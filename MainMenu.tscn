@@ -38,15 +38,13 @@ autoplay = "fadein"
 anims/fadein = SubResource( 1 )
 
 [node name="Label" type="Label" parent="."]
-self_modulate = Color( 0.431373, 0.341176, 0.45098, 1 )
+self_modulate = Color( 0.72549, 0.992157, 1, 1 )
 anchor_left = 0.5
-anchor_top = 0.237
 anchor_right = 0.5
-anchor_bottom = 0.237
-margin_left = -318.0
-margin_top = -0.199997
-margin_right = 318.0
-margin_bottom = 773.8
+margin_left = -320.0
+margin_top = 96.0
+margin_right = 316.0
+margin_bottom = 870.0
 custom_fonts/font = ExtResource( 2 )
 text = "Pulsa Espacio to Empezar
 Pulsa Esc para Salir
@@ -64,7 +62,7 @@ Cuidado con los virus
 Recoge los 5 tesoros
 
 Objetos:
-Las pociones te dejan moverte otra vez
+Las pociones amplian tu turno
 
 Creado para la XGN 2020
 Basado en un proyecto de Miziziziz
@@ -75,13 +73,14 @@ __meta__ = {
 }
 
 [node name="Panel" type="Panel" parent="Label"]
+modulate = Color( 0, 0, 0, 1 )
 show_behind_parent = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -18.0
-margin_top = -22.2
+margin_top = -23.291
 margin_right = 24.0
-margin_bottom = 19.8
+margin_bottom = 18.709
 custom_styles/panel = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -92,13 +91,13 @@ stream = ExtResource( 3 )
 autoplay = true
 
 [node name="Title" type="Label" parent="."]
-self_modulate = Color( 0.431373, 0.341176, 0.45098, 1 )
+self_modulate = Color( 0, 1, 0.407843, 1 )
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -512.0
-margin_top = 48.0
+margin_top = 16.0
 margin_right = 512.0
-margin_bottom = 120.0
+margin_bottom = 88.0
 custom_fonts/font = SubResource( 2 )
 text = "Co-Virus Dungeons"
 align = 1

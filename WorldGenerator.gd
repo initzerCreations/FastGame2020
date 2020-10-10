@@ -13,32 +13,32 @@ var treasure_ind = 0
 var treasures = [
 	{
 		"scene_object": preload("res://treasures/Cat.tscn"),
-		"header": "Treasure found:\nA Friendly Cat",
-		"message": "\"Meow\"",
+		"header": "Tesoro encontrado:\nUn gato amigable",
+		"message": "\"Miau\"",
 		"image": preload("res://sprites/portraits/cat.png")
 	},
 	{
 		"scene_object": preload("res://treasures/Mantis.tscn"),
-		"header": "Treasure found:\nA Recently Widowed Praying Mantis",
-		"message": "\"No officer, I haven't seen him in days\"",
+		"header": "Tesoro encontrado:\nUna mantis religiosa viuda",
+		"message": "\"Cri, cri - ups, creo que no era así\"",
 		"image": preload("res://sprites/portraits/prayingmantis.png")
 	},
 	{
 		"scene_object": preload("res://treasures/Dog.tscn"),
-		"header": "Treasure found:\nA Racist Dog",
-		"message": "\"Hitler did nothing wrong\"",
+		"header": "Tesoro encontrado:\nBuen chico",
+		"message": "\"¿Dónde estara la pelota?\"",
 		"image": preload("res://sprites/portraits/dog.png")
 	},
 	{
 		"scene_object": preload("res://treasures/BumbleBae.tscn"),
-		"header": "Treasure found:\nA Bumble Bae",
-		"message": "\"Hey Honey\"",
+		"header": "Tesoro encontrado:\nAbejorro infectado",
+		"message": "\"Todo por la corona\"",
 		"image": preload("res://sprites/portraits/bumblebae.png")
 	},
 	{
 		"scene_object": preload("res://treasures/Gamedev.tscn"),
-		"header": "Treasure found:\nA Self-Promoting Game Developer",
-		"message": "\"Buy my game Theyest Thou on Steam, also congrats on beating this game\"",
+		"header": "Tesoro encontrado:\nInitzer come-virus",
+		"message": "\"¡Eres un máquina! Ahora me comeré al virus.\"",
 		"image": preload("res://sprites/portraits/gamedev.png")
 	}
 ]

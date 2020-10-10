@@ -50,6 +50,11 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 0/tile_mode = 0
 0/occluder_offset = Vector2( 0, 0 )
 0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape = SubResource( 1 )
+0/shape_one_way = false
+0/shape_one_way_margin = 1.0
 0/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
@@ -66,6 +71,11 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 1/tile_mode = 0
 1/occluder_offset = Vector2( 0, 0 )
 1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape = SubResource( 2 )
+1/shape_one_way = false
+1/shape_one_way_margin = 1.0
 1/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
@@ -82,6 +92,11 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 2/tile_mode = 0
 2/occluder_offset = Vector2( 0, 0 )
 2/navigation_offset = Vector2( 0, 0 )
+2/shape_offset = Vector2( 0, 0 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+2/shape = SubResource( 3 )
+2/shape_one_way = false
+2/shape_one_way_margin = 1.0
 2/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
@@ -98,6 +113,11 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 3/tile_mode = 0
 3/occluder_offset = Vector2( 0, 0 )
 3/navigation_offset = Vector2( 0, 0 )
+3/shape_offset = Vector2( 0, 0 )
+3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+3/shape = SubResource( 4 )
+3/shape_one_way = false
+3/shape_one_way_margin = 1.0
 3/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
@@ -108,7 +128,6 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 3/z_index = 0
 
 [node name="World" type="Node2D"]
-modulate = Color( 0.431373, 0.341176, 0.45098, 1 )
 script = ExtResource( 5 )
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -164,10 +183,10 @@ margin_top = 176.0
 margin_right = 108.0
 margin_bottom = 241.0
 custom_fonts/font = ExtResource( 8 )
-text = "Level: 1
-Keys: 0/3
-Potions: 0
-Secrets: 0/5"
+text = "Nivel: 1
+Llaves: 0/3
+Objeto: 
+Tesoros: 0/5"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -290,16 +309,15 @@ __meta__ = {
 self_modulate = Color( 0.431373, 0.341176, 0.45098, 1 )
 margin_left = 32.0
 margin_top = 24.0
-margin_right = 108.0
+margin_right = 320.0
 margin_bottom = 72.0
 custom_fonts/font = ExtResource( 8 )
-text = "Free Steps Left:"
+text = "Movimientos:"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="TreasureDisplay" type="Panel" parent="CanvasLayer"]
-visible = false
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -276.0
@@ -320,8 +338,8 @@ margin_top = 16.0
 margin_right = 268.5
 margin_bottom = 87.0
 custom_fonts/font = ExtResource( 8 )
-text = "You found:
-A Recently Divorced Praying Mantis"
+text = "Encontraste:
+Al Initzer come-virus"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -352,7 +370,7 @@ margin_top = -117.0
 margin_right = 260.0
 margin_bottom = -9.0
 custom_fonts/font = ExtResource( 8 )
-text = "\"Buy my game Theyest Thou on Steam, also congrats on beating this game\""
+text = "\"Eres un máquina\" - Initzer 2020"
 align = 1
 valign = 1
 autowrap = true
