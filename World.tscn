@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://objects/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://sprites/walls.png" type="Texture" id=2]
@@ -28,6 +28,8 @@
 [ext_resource path="res://audio/stairs.wav" type="AudioStream" id=26]
 [ext_resource path="res://audio/LockedDoor_2.wav" type="AudioStream" id=27]
 [ext_resource path="res://audio/music/underground.ogg" type="AudioStream" id=28]
+[ext_resource path="res://audio/explosion.wav" type="AudioStream" id=29]
+[ext_resource path="res://audio/hammer.wav" type="AudioStream" id=30]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
@@ -148,7 +150,7 @@ script = ExtResource( 3 )
 
 [node name="KilledRestartMessage" type="Label" parent="CanvasLayer"]
 visible = false
-self_modulate = Color( 0.431373, 0.341176, 0.45098, 1 )
+self_modulate = Color( 0.972549, 0, 1, 1 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -158,8 +160,8 @@ margin_top = -156.0
 margin_right = 329.0
 margin_bottom = -48.0
 custom_fonts/font = ExtResource( 8 )
-text = "You Died! 
-Press R to Restart"
+text = "¡Has muerto! 
+Pulsa R para reiniciar"
 align = 1
 autowrap = true
 __meta__ = {
@@ -180,7 +182,7 @@ __meta__ = {
 }
 
 [node name="CollectionInfo" type="Label" parent="CanvasLayer"]
-self_modulate = Color( 0.431373, 0.341176, 0.45098, 1 )
+self_modulate = Color( 0.972549, 0, 1, 1 )
 margin_left = 32.0
 margin_top = 176.0
 margin_right = 108.0
@@ -309,7 +311,7 @@ __meta__ = {
 }
 
 [node name="Steps" type="Label" parent="CanvasLayer"]
-self_modulate = Color( 0.431373, 0.341176, 0.45098, 1 )
+self_modulate = Color( 0.972549, 0, 1, 1 )
 margin_left = 32.0
 margin_top = 24.0
 margin_right = 320.0
@@ -321,6 +323,7 @@ __meta__ = {
 }
 
 [node name="TreasureDisplay" type="Panel" parent="CanvasLayer"]
+visible = false
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -276.0
@@ -333,7 +336,7 @@ __meta__ = {
 }
 
 [node name="Header" type="Label" parent="CanvasLayer/TreasureDisplay"]
-modulate = Color( 0.431373, 0.341176, 0.45098, 1 )
+modulate = Color( 0.972549, 0, 1, 1 )
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -268.5
@@ -349,7 +352,7 @@ __meta__ = {
 }
 
 [node name="Portrait" type="TextureRect" parent="CanvasLayer/TreasureDisplay"]
-modulate = Color( 0.431373, 0.341176, 0.45098, 1 )
+modulate = Color( 0.972549, 0, 1, 1 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -361,9 +364,12 @@ margin_bottom = 20.0
 rect_scale = Vector2( 4, 4 )
 rect_pivot_offset = Vector2( 16, 16 )
 texture = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Message" type="Label" parent="CanvasLayer/TreasureDisplay"]
-modulate = Color( 0.431373, 0.341176, 0.45098, 1 )
+modulate = Color( 0.972549, 0, 1, 1 )
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -396,6 +402,12 @@ bus = "SFX"
 [node name="DoorUnlockSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 27 )
 bus = "SFX"
+
+[node name="ExplosionSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 29 )
+
+[node name="HammerSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 30 )
 
 [node name="StartLevelSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 26 )

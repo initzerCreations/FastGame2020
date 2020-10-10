@@ -49,6 +49,8 @@ var key = preload("res://objects/Key.tscn")
 var door = preload("res://objects/Door.tscn")
 var enemy = preload("res://objects/Enemy.tscn")
 var potion = preload("res://objects/Potion.tscn")
+var long_range_gun = preload("res://objects/LongRangeGun.tscn")
+var short_range_gun = preload("res://objects/ShortRangeGun.tscn")
 
 const START_ROOM_COUNT = 3 # not including starting room and exit room
 const ROOM_COUNT_INCREASE_PER_LEVEL = 2
@@ -267,14 +269,23 @@ func generate_objects_in_world(spawn_locations: Dictionary) -> Dictionary:
 		treasure["message"] = treasures[treasure_ind].message
 		treasure["image"]  = treasures[treasure_ind].image
 	
-	var potion_count = START_OBJECT_COUNT + cur_level * OBJECT_COUNT_INCREASE_PER_LEVEL
+	var item_count = START_OBJECT_COUNT + cur_level * OBJECT_COUNT_INCREASE_PER_LEVEL
+	var split1 = int(rand_range(0, item_count))
+	var split2 = int(rand_range(split1, item_count))
+	var potion_count = split1
+	var long_range_gun_count = split2 - split1
+	var short_range_gun_count = item_count - split2
 	var potions = spawn_objects_at_locations(potion, spawn_locations.pickup_spawn_locations, potion_count, "potions")
+	var long_range_guns = spawn_objects_at_locations(long_range_gun, spawn_locations.pickup_spawn_locations, long_range_gun_count, "long_range_gun")
+	var short_range_guns = spawn_objects_at_locations(short_range_gun, spawn_locations.pickup_spawn_locations, short_range_gun_count, "short_range_gun")
 	var doors = spawn_objects_at_locations(door, spawn_locations.door_coords, DOOR_COUNT, "doors", false)
 	
 	var data = {
 		"enemies": enemies,
 		"keys": keys,
 		"potions": potions,
+		"long_range_guns": long_range_guns,
+		"short_range_guns": short_range_guns,
 		"doors": doors,
 		"player": player,
 		"exit": exit,

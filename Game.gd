@@ -11,6 +11,8 @@ var player_looking_at = [0, -1]
 var enemies = {}
 var doors = {}
 var potions = {}
+var long_range_guns = {}
+var short_range_guns = {}
 var keys = {}
 var treasure_data = {} # {object: {<loc>:<obj>}, header:string, message:string}
 var astar = null
@@ -60,6 +62,8 @@ func generate_new_world():
 	enemies = world_data.enemies
 	doors = world_data.doors
 	potions = world_data.potions
+	long_range_guns = world_data.long_range_guns
+	short_range_guns = world_data.short_range_guns
 	treasure_data = world_data.treasure_data
 	keys = world_data.keys
 	astar = world_data.astar
@@ -153,10 +157,10 @@ func move_character(character, dir):
 	var is_player = character == player
 	var coords = world_pos_to_map_coord(character.global_position)
 	var old_coords = coords.duplicate()
-	player_looking_at = dir
 	coords[0] += dir[0]
 	coords[1] += dir[1]
-	
+	if is_player:
+		player_looking_at = dir
 	var moved = false
 	if can_move_to_coords(coords, is_player):
 		moved = true
@@ -182,6 +186,16 @@ func move_character(character, dir):
 				var potion = potions[scoords]
 				potions.erase(scoords)
 				potion.queue_free()
+			if scoords in short_range_guns:
+				add_short_range_gun()
+				var short_range_gun = short_range_guns[scoords]
+				short_range_guns.erase(scoords)
+				short_range_gun.queue_free()
+			if scoords in long_range_guns:
+				add_long_range_gun()
+				var long_range_gun = long_range_guns[scoords]
+				long_range_guns.erase(scoords)
+				long_range_gun.queue_free()
 			if treasure_data.size() > 0 and scoords in treasure_data.object_data:
 				treasure_data.object_data[scoords].queue_free()
 				treasure_data.object_data.erase(scoords)
@@ -244,36 +258,45 @@ func add_potion():
 	update_collection_info()
 	$PotionPickupSound.play()
 
-func add_ak47():
+func add_long_range_gun():
 	object_held = OBJ_RANGED_LONG
+	update_collection_info()
+	$PotionPickupSound.play()
+
+func add_short_range_gun():
+	object_held = OBJ_RANGED_SHORT
 	update_collection_info()
 	$PotionPickupSound.play()
 
 func use_object():
 	if object_held == OBJ_POTION:
 		moves_left += 3
-		update_collection_info()
-		update_steps_info()
 		$PotionDrinkSound.play()
 		player.get_node("AnimationPlayer").play("drink_potion")
-	elif object_held == OBJ_RANGED_LONG:
+	elif object_held == OBJ_RANGED_LONG or object_held == OBJ_RANGED_SHORT:
 		moves_left -= 1
+		var range_ = 4
+		if object_held == OBJ_RANGED_SHORT:
+			range_ = 1
 		# Kill first enemy in line
 		var pl_coords = world_pos_to_map_coord(player.global_position)
 		var leftRight = player_looking_at[0] == 0
-		print("player_looking_at " + str(player_looking_at) + ", " + str(leftRight))
-		for i in range(4):
+		for i in range(range_+1):
 			var coords = [pl_coords[0] + player_looking_at[0] * i, pl_coords[1] + player_looking_at[1] * i]
-			print("Hit enemy? " + str(coords) + " enemies " + str(enemies))
 			if str(coords) in enemies:
 				print("Hit enemy")
 				var enemy = enemies[str(coords)]
-				$WorldGenerator.remove_child(enemy)
+				enemy.queue_free()
 				enemies.erase(str(coords))
-		update_collection_info()
-		update_steps_info()
-		$PotionDrinkSound.play()
+		if range_ > 1:
+			$ExplosionSound.play()
+			player.get_node("AnimationPlayer").play("shoot_long_gun")
+		else:
+			$HammerSound.play()
+			player.get_node("AnimationPlayer").play("shoot_short_gun")
 	object_held = null
+	update_collection_info()
+	update_steps_info()
 
 func update_collection_info():
 	var new_display_text = ""
