@@ -15,8 +15,8 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Co-Virus Dungeons"
-run/main_scene="res://MainMenu.tscn"
+config/name="Devgeon"
+run/main_scene="res://Intro.tscn"
 config/icon="res://icon.png"
 
 [display]
