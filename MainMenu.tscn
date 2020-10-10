@@ -40,30 +40,35 @@ anims/fadein = SubResource( 1 )
 [node name="Label" type="Label" parent="."]
 self_modulate = Color( 0.431373, 0.341176, 0.45098, 1 )
 anchor_left = 0.5
+anchor_top = 0.237
 anchor_right = 0.5
-margin_left = -273.0
-margin_top = 184.0
-margin_right = 273.0
-margin_bottom = 810.0
+anchor_bottom = 0.237
+margin_left = -318.0
+margin_top = -0.199997
+margin_right = 318.0
+margin_bottom = 773.8
 custom_fonts/font = ExtResource( 2 )
-text = "Press Space to Start
-Press Esc to Exit
+text = "Pulsa Espacio to Empezar
+Pulsa Esc para Salir
 
-Controls:
-WASD or Arrow Keys to move
-Space to drink potion
-Shift to skip turn
-R to restart
-Esc to Exit
+Controles:
+WASD o flechas para moverte
+Espacio para usar objeto
+Shift para saltar turno
+R para reiniciar
+Esc para salir
 
-How to Play:
-Collect 3 keys to get to the next level
-Collect all 5 treasures
-Potions let you move an extra space
+Cómo jugar:
+Recoge las llaves y pasa de nivel
+Cuidado con los virus
+Recoge los 5 tesoros
 
-Created by Miziziziz
-Music and sfx are from public domain 
-or royalty-free sources"
+Objetos:
+Las pociones te dejan moverte otra vez
+
+Creado para la XGN 2020
+Basado en un proyecto de Miziziziz
+Licencia: MIT"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -73,11 +78,14 @@ __meta__ = {
 show_behind_parent = true
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -21.0
-margin_top = -21.0
-margin_right = 21.0
-margin_bottom = 21.0
+margin_left = -18.0
+margin_top = -22.2
+margin_right = 24.0
+margin_bottom = 19.8
 custom_styles/panel = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
@@ -87,9 +95,13 @@ autoplay = true
 self_modulate = Color( 0.431373, 0.341176, 0.45098, 1 )
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -210.5
+margin_left = -512.0
 margin_top = 48.0
-margin_right = 210.5
+margin_right = 512.0
 margin_bottom = 120.0
 custom_fonts/font = SubResource( 2 )
-text = "Thine Cometh"
+text = "Co-Virus Dungeons"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
