@@ -23,3 +23,21 @@ Juego de temática roguelike con las siguientes características:
 - Distintas dificultades.
 - Música ambiental.
 
+## Desarrollo de la historia
+
+Al comienzo de tu aventura en Devgeon, se te encomienda una misión de rescate donde debes salvar a los siguientes personajes:
+
+[foto]
+# El gato
+
+[foto]
+# La mantis
+
+[foto]
+# El perro
+
+[foto]
+# La abeja
+
+[foto]
+# El desarrollador (Gamedev)
