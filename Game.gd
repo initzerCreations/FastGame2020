@@ -161,6 +161,10 @@ func move_character(character, dir):
 	coords[1] += dir[1]
 	if is_player:
 		player_looking_at = dir
+		if player_looking_at[1] == 1:
+			$Player.find_node("Sprite").texture = preload("res://sprites/player.png")
+		elif player_looking_at[1] == -1:
+			$Player.find_node("Sprite").texture = preload("res://sprites/player_back.png")
 	var moved = false
 	if can_move_to_coords(coords, is_player):
 		moved = true
