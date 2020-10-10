@@ -20,9 +20,11 @@ const UP = [0, -1]
 const DOWN = [0, 1]
 
 var keys_held = 0
-var potions_held = 0
+var object_held = 0
 var treasures_found = 0
 var dead = false
+
+const OBJ_POTION = "Potion"
 
 var time_held_move_key = 0.0
 const TIME_TO_HOLD_MOVE_KEY_BEFORE_MOVING = 0.2
@@ -102,8 +104,8 @@ func _process(delta):
 	else:
 		time_held_move_key = 0.0
 	
-	if Input.is_action_just_pressed("drink_potion") and potions_held > 0:
-		drink_potion()
+	if Input.is_action_just_pressed("use_object") and object_held != null:
+		use_object()
 	
 	if Input.is_action_just_pressed("skip_action"):
 		$SkipTurnSound.play()
@@ -233,24 +235,28 @@ func remove_key():
 	update_collection_info()
 
 func add_potion():
-	potions_held += 1
+	object_held = OBJ_POTION
 	update_collection_info()
 	$PotionPickupSound.play()
 
-func drink_potion():
-	player.get_node("AnimationPlayer").play("drink_potion")
-	potions_held -= 1
-	moves_left += 1
-	update_collection_info()
-	update_steps_info()
-	$PotionDrinkSound.play()
+func use_object():
+	player.get_node("AnimationPlayer").play("use_object")
+	if object_held == OBJ_POTION:
+		moves_left += 3
+		update_collection_info()
+		update_steps_info()
+		$PotionDrinkSound.play()
+	object_held = null
 
 func update_collection_info():
 	var new_display_text = ""
-	new_display_text += "Level: " + str(cur_level + 1) + "\n"
-	new_display_text += "Keys: " + str(keys_held) + "/3\n"
-	new_display_text += "Potions: " + str(potions_held) + "\n"
-	new_display_text += "Treasures: " + str(treasures_found) + "/5"
+	new_display_text += "Nivel: " + str(cur_level + 1) + "\n"
+	new_display_text += "Llaves: " + str(keys_held) + "/3\n"
+	if object_held == null:
+		new_display_text += "Objeto: \n"
+	else:
+		new_display_text += "Objeto: " + str(object_held) + "\n"
+	new_display_text += "Tesoros: " + str(treasures_found) + "/5"
 	$CanvasLayer/CollectionInfo.text = new_display_text
 
 func update_steps_info():
@@ -275,7 +281,7 @@ func kill():
 
 func restart():
 	keys_held = 0
-	potions_held = 0
+	object_held = null
 	treasures_found = 0
 	$CanvasLayer/KilledRestartMessage.hide()
 	#cur_level += 1
