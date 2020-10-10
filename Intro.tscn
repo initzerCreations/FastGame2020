@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Intro.gd" type="Script" id=1]
+[ext_resource path="res://ui/font_generic_large.tres" type="DynamicFont" id=2]
+[ext_resource path="res://ui/font_generic.tres" type="DynamicFont" id=3]
+[ext_resource path="res://audio/text_blip.ogg" type="AudioStream" id=4]
+[ext_resource path="res://sprites/Enviroments/background.png" type="Texture" id=5]
+
+[node name="Intro" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 5 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="Label" parent="."]
+anchor_left = 0.503906
+anchor_top = 0.506667
+anchor_right = 0.503906
+anchor_bottom = 0.766667
+margin_left = -484.0
+margin_top = -48.0
+margin_right = 484.0
+margin_bottom = 48.0
+custom_fonts/font = ExtResource( 2 )
+text = "Durante años, programó su propia mazmorra
+Pero los virus tomaron el control
+Solo tu podrás salvarlo...
+A él, a su gato, a su perro, a su mantis, a su abeja...
+Y a ti mismo..."
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -173.5
+margin_top = -35.0
+margin_right = 173.5
+custom_fonts/font = ExtResource( 3 )
+text = "<Espacio o Esc para saltar>"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
