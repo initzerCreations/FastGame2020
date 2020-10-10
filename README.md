@@ -27,21 +27,21 @@ Juego de temática roguelike con las siguientes características:
 
 Al comienzo de tu aventura en Devgeon, se te encomienda una misión de rescate donde debes salvar a los siguientes personajes:
 
-![Image del gato](https://github.com/initzerCreations/FastGame2020/blob/master/sprites/portraits/cat.png)
+![Image del gato](sprites/portraits/cat.png)
 El gato.
 
 
-![Image de la mantis](https://github.com/initzerCreations/FastGame2020/blob/master/sprites/portraits/prayingmantis.png)
+![Image de la mantis](sprites/portraits/prayingmantis.png)
 La mantis.
 
 
-![Image del perro](https://github.com/initzerCreations/FastGame2020/blob/master/sprites/portraits/dog.png)
+![Image del perro](sprites/portraits/dog.png)
 El perro.
 
 
-![Image de la abeja](https://github.com/initzerCreations/FastGame2020/blob/master/sprites/portraits/bumblebae.png)
+![Image de la abeja](sprites/portraits/bumblebae.png)
 La abeja.
 
 
-![Image del desarrollador](https://github.com/initzerCreations/FastGame2020/blob/master/sprites/portraits/gamedev.png)
+![Image del desarrollador](sprites/portraits/gamedev.png)
 El desarrollador (Gamedev)
