@@ -24,7 +24,7 @@ const UP = [0, -1]
 const DOWN = [0, 1]
 
 var keys_held = 0
-var object_held = OBJ_RANGED_LONG
+var object_held = OBJ_RANGED_SHORT
 var treasures_found = 0
 var dead = false
 
@@ -284,7 +284,6 @@ func use_object():
 		for i in range(range_+1):
 			var coords = [pl_coords[0] + player_looking_at[0] * i, pl_coords[1] + player_looking_at[1] * i]
 			if str(coords) in enemies:
-				print("Hit enemy")
 				var enemy = enemies[str(coords)]
 				enemy.queue_free()
 				enemies.erase(str(coords))
@@ -292,7 +291,7 @@ func use_object():
 			$ExplosionSound.play()
 			player.get_node("AnimationPlayer").play("shoot_long_gun")
 		else:
-			$HammerSound.play()
+			$HammerSound.play(1.3)
 			player.get_node("AnimationPlayer").play("shoot_short_gun")
 	object_held = null
 	update_collection_info()

@@ -4,7 +4,7 @@
 [ext_resource path="res://ui/font_generic_large.tres" type="DynamicFont" id=2]
 [ext_resource path="res://ui/font_generic.tres" type="DynamicFont" id=3]
 [ext_resource path="res://audio/text_blip.ogg" type="AudioStream" id=4]
-[ext_resource path="res://sprites/Enviroments/background.png" type="Texture" id=5]
+[ext_resource path="res://AnimatedBackground.tscn" type="PackedScene" id=5]
 
 [node name="Intro" type="Control"]
 anchor_right = 1.0
@@ -14,14 +14,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Background" type="TextureRect" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture = ExtResource( 5 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="AnimatedBackground" parent="." instance=ExtResource( 5 )]
 
 [node name="RichTextLabel" type="Label" parent="."]
 anchor_left = 0.503906
@@ -33,6 +26,7 @@ margin_top = -48.0
 margin_right = 484.0
 margin_bottom = 48.0
 custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.439216, 1, 0.462745, 1 )
 text = "Durante años, programó su propia mazmorra
 Pero los virus tomaron el control
 Solo tu podrás salvarlo...
@@ -61,3 +55,5 @@ __meta__ = {
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
+
+[node name="Node" type="Node" parent="."]

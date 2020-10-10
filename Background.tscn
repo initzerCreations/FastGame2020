@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://sprites/Enviroments/graveyard.png" type="Texture" id=1]
+[ext_resource path="res://sprites/Enviroments/castle.png" type="Texture" id=2]
+[ext_resource path="res://sprites/Enviroments/mountains.png" type="Texture" id=3]
+[ext_resource path="res://sprites/Enviroments/background.png" type="Texture" id=4]
+
+[node name="Background" type="TextureRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background2" type="TextureRect" parent="."]
+anchor_top = 0.293
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 0.199997
+texture = ExtResource( 3 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background3" type="TextureRect" parent="."]
+anchor_top = 0.427
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 15.8
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background4" type="TextureRect" parent="."]
+modulate = Color( 0.635294, 0.427451, 0.788235, 1 )
+anchor_left = 0.547
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -0.128052
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

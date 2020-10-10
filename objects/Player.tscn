@@ -76,7 +76,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 resource_name = "shoot_short_gun"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -105,7 +105,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
 length = 0.8
 loop = true
 tracks/0/type = "value"
@@ -129,7 +129,7 @@ z_index = 2
 texture = ExtResource( 1 )
 vframes = 4
 hframes = 4
-frame = 14
+frame = 13
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
@@ -140,5 +140,5 @@ autoplay = "walk"
 anims/die = SubResource( 1 )
 anims/drink_potion = SubResource( 2 )
 anims/shoot_long_gun = SubResource( 3 )
-anims/shoot_short_gun = SubResource( 5 )
-anims/walk = SubResource( 4 )
+anims/shoot_short_gun = SubResource( 4 )
+anims/walk = SubResource( 5 )
