@@ -6,6 +6,8 @@ onready var tilemap = $TileMap
 onready var world_generator = $WorldGenerator
 var cur_level = 0
 
+var player_looking_at = [0, -1]
+
 var enemies = {}
 var doors = {}
 var potions = {}
@@ -20,11 +22,13 @@ const UP = [0, -1]
 const DOWN = [0, 1]
 
 var keys_held = 0
-var object_held = 0
+var object_held = OBJ_RANGED_LONG
 var treasures_found = 0
 var dead = false
 
-const OBJ_POTION = "Potion"
+const OBJ_POTION = "Poción"
+const OBJ_RANGED_LONG = "Bazooka"
+const OBJ_RANGED_SHORT = "Martillo"
 
 var time_held_move_key = 0.0
 const TIME_TO_HOLD_MOVE_KEY_BEFORE_MOVING = 0.2
@@ -123,7 +127,7 @@ func _process(delta):
 			var enemy_pos = world_pos_to_map_coord(enemy.global_position)
 			if !enemy.alerted and enemy.has_line_of_sight(player_pos, enemy_pos, tilemap):
 				enemy.alert()
-	if moves_left == 0:
+	if moves_left <= 0:
 		moves_left = MIN_MOVES_PER_TURN
 		update_steps_info()
 		var enemies_to_move = []
@@ -149,6 +153,7 @@ func move_character(character, dir):
 	var is_player = character == player
 	var coords = world_pos_to_map_coord(character.global_position)
 	var old_coords = coords.duplicate()
+	player_looking_at = dir
 	coords[0] += dir[0]
 	coords[1] += dir[1]
 	
@@ -239,10 +244,32 @@ func add_potion():
 	update_collection_info()
 	$PotionPickupSound.play()
 
+func add_ak47():
+	object_held = OBJ_RANGED_LONG
+	update_collection_info()
+	$PotionPickupSound.play()
+
 func use_object():
-	player.get_node("AnimationPlayer").play("use_object")
 	if object_held == OBJ_POTION:
 		moves_left += 3
+		update_collection_info()
+		update_steps_info()
+		$PotionDrinkSound.play()
+		player.get_node("AnimationPlayer").play("drink_potion")
+	elif object_held == OBJ_RANGED_LONG:
+		moves_left -= 1
+		# Kill first enemy in line
+		var pl_coords = world_pos_to_map_coord(player.global_position)
+		var leftRight = player_looking_at[0] == 0
+		print("player_looking_at " + str(player_looking_at) + ", " + str(leftRight))
+		for i in range(4):
+			var coords = [pl_coords[0] + player_looking_at[0] * i, pl_coords[1] + player_looking_at[1] * i]
+			print("Hit enemy? " + str(coords) + " enemies " + str(enemies))
+			if str(coords) in enemies:
+				print("Hit enemy")
+				var enemy = enemies[str(coords)]
+				$WorldGenerator.remove_child(enemy)
+				enemies.erase(str(coords))
 		update_collection_info()
 		update_steps_info()
 		$PotionDrinkSound.play()

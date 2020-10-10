@@ -1,7 +1,11 @@
-[gd_resource type="DynamicFont" load_steps=2 format=2]
+[gd_resource type="DynamicFont" load_steps=3 format=2]
 
-[ext_resource path="res://ui/KLEINTEN.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://ui/Quantum.otf" type="DynamicFontData" id=1]
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://ui/Masaaki-Regular.otf"
 
 [resource]
 size = 30
 font_data = ExtResource( 1 )
+fallback/0 = SubResource( 1 )

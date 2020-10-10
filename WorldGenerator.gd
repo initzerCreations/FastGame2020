@@ -67,8 +67,8 @@ const KEY_COUNT = 3
 const DOOR_COUNT = 3
 const START_ENEMY_COUNT = 2
 const ENEMY_COUNT_INCREASE_PER_LEVEL = 1
-const START_POTION_COUNT = 0
-const POTION_COUNT_INCREASE_PER_LEVEL = 1
+const START_OBJECT_COUNT = 0
+const OBJECT_COUNT_INCREASE_PER_LEVEL = 1
 
 const CHANCE_OF_TREASURE_SPAWNING = 2
 
@@ -267,7 +267,7 @@ func generate_objects_in_world(spawn_locations: Dictionary) -> Dictionary:
 		treasure["message"] = treasures[treasure_ind].message
 		treasure["image"]  = treasures[treasure_ind].image
 	
-	var potion_count = START_POTION_COUNT + cur_level * POTION_COUNT_INCREASE_PER_LEVEL
+	var potion_count = START_OBJECT_COUNT + cur_level * OBJECT_COUNT_INCREASE_PER_LEVEL
 	var potions = spawn_objects_at_locations(potion, spawn_locations.pickup_spawn_locations, potion_count, "potions")
 	var doors = spawn_objects_at_locations(door, spawn_locations.door_coords, DOOR_COUNT, "doors", false)
 	
