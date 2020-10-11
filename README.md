@@ -45,3 +45,5 @@ La abeja.
 
 ![Image del desarrollador](sprites/portraits/gamedev.png)
 El desarrollador (Gamedev)
+
+Deberás explorar los distintos niveles para conseguir encontrarlos y evitar que te maten porque si lo hacen volverás al nivel 1
