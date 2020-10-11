@@ -69,6 +69,7 @@ func generate_new_world():
 	astar = world_data.astar
 	astar_points_cache = world_data.astar_points_cache
 	$StartLevelSound.play()
+	_rem_obj()
 	if cur_level > 1:
 		if object_held == OBJ_POTION:
 			add_potion(preload("res://objects/Potion.tscn").instance())
@@ -225,6 +226,9 @@ func move_character(character, dir):
 				$CanvasLayer/TreasureDisplay/Portrait.texture = treasure_data.image
 				if treasures_found < $TreasureSounds.get_child_count():
 					$TreasureSounds.get_child(treasures_found).play()
+				if treasures_found == 4:
+					yield(get_tree().create_timer(4.0), "timeout")
+					get_tree().change_scene("res://MainMenu.tscn")
 				treasures_found += 1
 				update_collection_info()
 			if coords == world_pos_to_map_coord(exit.global_position):
