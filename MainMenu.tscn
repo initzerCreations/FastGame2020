@@ -40,20 +40,29 @@ __meta__ = {
 autoplay = "fadein"
 anims/fadein = SubResource( 1 )
 
-[node name="Label" type="Label" parent="."]
-self_modulate = Color( 0.72549, 0.992157, 1, 1 )
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -318.0
-margin_top = -900.0
-margin_right = 318.0
-margin_bottom = -67.0
-custom_fonts/font = ExtResource( 2 )
-text = "Pulsa Espacio para Empezar
-Pulsa Esc para Salir
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+anchor_left = 0.098
+anchor_top = 0.213
+anchor_right = 0.598
+anchor_bottom = 0.973
+margin_left = -0.352005
+margin_top = 0.199989
+margin_right = -0.352173
+margin_bottom = 0.199951
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
+[node name="Label" type="Label" parent="ScrollContainer"]
+self_modulate = Color( 0.72549, 0.992157, 1, 1 )
+margin_right = 500.0
+margin_bottom = 795.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
+text = "
 Controles:
 WASD o flechas para moverte
 Espacio para usar objeto
@@ -72,21 +81,22 @@ Las armas disparan hacia delante
 
 Creado para la XGN 2020
 Basado en un proyecto de Miziziziz
-Licencia: MIT"
+Licencia: MIT
+Pulsa Esc para Salir"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Panel" type="Panel" parent="Label"]
+[node name="Panel" type="Panel" parent="ScrollContainer/Label"]
 self_modulate = Color( 1, 1, 1, 0.784314 )
 show_behind_parent = true
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -18.0
-margin_top = -16.0
-margin_right = 24.0
-margin_bottom = 19.0
+anchor_left = 0.016
+anchor_top = -0.02
+anchor_right = 1.008
+anchor_bottom = 0.996
+margin_top = 23.9
+margin_bottom = 0.179932
 custom_styles/panel = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -100,13 +110,97 @@ autoplay = true
 self_modulate = Color( 0, 1, 0.407843, 1 )
 anchor_left = 0.5
 anchor_right = 0.5
+anchor_bottom = 0.188
 margin_left = -512.0
 margin_top = 50.0
 margin_right = 512.0
-margin_bottom = 88.0
+margin_bottom = -24.8
 custom_fonts/font = SubResource( 2 )
 text = "DEVGEON"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Jugar" type="Label" parent="."]
+anchor_left = 0.687
+anchor_top = 0.373
+anchor_right = 0.875
+anchor_bottom = 0.427
+margin_left = 0.511963
+margin_top = 0.199982
+margin_right = -6.10352e-05
+margin_bottom = 2.79999
+custom_fonts/font = ExtResource( 2 )
+text = "Jugar"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="JugarFacil" type="Button" parent="."]
+anchor_left = 0.687
+anchor_top = 0.467
+anchor_right = 0.875
+anchor_bottom = 0.533
+margin_left = 0.511963
+margin_top = -0.200012
+margin_right = -6.10352e-05
+margin_bottom = 1.19998
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0.905882, 1, 1 )
+text = "Fácil"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="JugarMedio" type="Button" parent="."]
+anchor_left = 0.687
+anchor_top = 0.573
+anchor_right = 0.875
+anchor_bottom = 0.642
+margin_left = 0.511963
+margin_top = 0.199982
+margin_right = -6.10352e-05
+margin_bottom = -0.200012
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 1, 0.0666667, 1 )
+text = "Medio"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="JugarDificil" type="Button" parent="."]
+anchor_left = 0.687
+anchor_top = 0.68
+anchor_right = 0.875
+anchor_bottom = 0.748
+margin_left = 0.511963
+margin_right = -6.10352e-05
+margin_bottom = 0.199982
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.941176, 1, 0, 1 )
+text = "Difícil"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="JugarImposible" type="Button" parent="."]
+anchor_left = 0.687
+anchor_top = 0.787
+anchor_right = 0.875
+anchor_bottom = 0.855
+margin_left = 0.511963
+margin_top = -0.200043
+margin_right = -6.10352e-05
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "Imposible"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="JugarFacil" to="." method="_on_JugarFacil_pressed"]
+[connection signal="pressed" from="JugarMedio" to="." method="_on_JugarMedio_pressed"]
+[connection signal="pressed" from="JugarDificil" to="." method="_on_JugarDificil_pressed"]
+[connection signal="pressed" from="JugarImposible" to="." method="_on_JugarImposible_pressed"]

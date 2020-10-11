@@ -161,10 +161,19 @@ func move_character(character, dir):
 	coords[1] += dir[1]
 	if is_player:
 		player_looking_at = dir
+		var sprite: Sprite = $Player.find_node("Sprite")
 		if player_looking_at[1] == 1:
-			$Player.find_node("Sprite").texture = preload("res://sprites/player.png")
+			sprite.texture = preload("res://sprites/player.png")
+			sprite.flip_h = false
 		elif player_looking_at[1] == -1:
-			$Player.find_node("Sprite").texture = preload("res://sprites/player_back.png")
+			sprite.texture = preload("res://sprites/player_back.png")
+			sprite.flip_h = false
+		elif player_looking_at[0] == 1:
+			sprite.texture = preload("res://sprites/player_right.png")
+			sprite.flip_h = false
+		elif player_looking_at[0] == -1:
+			sprite.texture = preload("res://sprites/player_right.png")
+			sprite.flip_h = true
 	var moved = false
 	if can_move_to_coords(coords, is_player):
 		moved = true
@@ -174,7 +183,7 @@ func move_character(character, dir):
 			$FootStepSounds.get_child(randi() % $FootStepSounds.get_child_count()).play()
 			player.get_node("AnimationPlayer").stop()
 			player.get_node("AnimationPlayer").play("walk")
-			character.get_node("Sprite").flip_h = !character.get_node("Sprite").flip_h
+			#character.get_node("Sprite").flip_h = !character.get_node("Sprite").flip_h
 			var player_sprite = player.get_node("Sprite")
 			player_sprite.frame = (player_sprite.frame + 1) % 2
 			var scoords = str(coords)
