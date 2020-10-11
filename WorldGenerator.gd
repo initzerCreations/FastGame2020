@@ -88,7 +88,7 @@ func init(scn_root, tilemap_ref, player_ref, exit_ref):
 	OBJECT_COUNT_INCREASE_PER_LEVEL = 2/(d * d + 1) # ~ 2, 1, 0.5, 0.25
 	START_ENEMY_COUNT = d + 1
 	ENEMY_COUNT_INCREASE_PER_LEVEL = d + 1
-	CHANCE_OF_TREASURE_SPAWNING = 2 + 2 * d
+	CHANCE_OF_TREASURE_SPAWNING = 1 + d * d # ~ 1, 2, 4, 8
 
 func generate_world(level, trsure_ind):
 	cur_level = level
