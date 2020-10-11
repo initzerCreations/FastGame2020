@@ -29,7 +29,7 @@ custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color = Color( 0.439216, 1, 0.462745, 1 )
 text = "Durante años, programó su propia mazmorra
 Pero los virus tomaron el control
-Solo tu podrás salvarlo...
+Solo tu podrás salvarlo
 A él, a su gato, a su perro, a su mantis, a su abeja...
 Y a ti mismo..."
 align = 1

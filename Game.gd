@@ -24,7 +24,7 @@ const UP = [0, -1]
 const DOWN = [0, 1]
 
 var keys_held = 0
-var object_held = OBJ_RANGED_SHORT
+var object_held = null
 var treasures_found = 0
 var dead = false
 
@@ -69,6 +69,13 @@ func generate_new_world():
 	astar = world_data.astar
 	astar_points_cache = world_data.astar_points_cache
 	$StartLevelSound.play()
+	if cur_level > 1:
+		if object_held == OBJ_POTION:
+			add_potion(preload("res://objects/Potion.tscn").instance())
+		elif object_held == OBJ_RANGED_LONG:
+			add_long_range_gun(preload("res://objects/LongRangeGun.tscn").instance())
+		elif object_held == OBJ_RANGED_SHORT:
+			add_short_range_gun(preload("res://objects/ShortRangeGun.tscn").instance())
 
 func _process(delta):
 	if Input.is_action_just_pressed("exit"):
@@ -195,18 +202,18 @@ func move_character(character, dir):
 				keys.erase(scoords)
 				key.queue_free()
 			if scoords in potions:
-				add_potion()
 				var potion = potions[scoords]
+				add_potion(potion)
 				potions.erase(scoords)
 				potion.queue_free()
 			if scoords in short_range_guns:
-				add_short_range_gun()
 				var short_range_gun = short_range_guns[scoords]
+				add_short_range_gun(short_range_gun)
 				short_range_guns.erase(scoords)
 				short_range_gun.queue_free()
 			if scoords in long_range_guns:
-				add_long_range_gun()
 				var long_range_gun = long_range_guns[scoords]
+				add_long_range_gun(long_range_gun)
 				long_range_guns.erase(scoords)
 				long_range_gun.queue_free()
 			if treasure_data.size() > 0 and scoords in treasure_data.object_data:
@@ -266,17 +273,46 @@ func remove_key():
 	keys_held -= 1
 	update_collection_info()
 
-func add_potion():
+func _rem_obj():
+	for ch in $Player.get_children():
+		if "Object" in ch.name:
+			ch.queue_free()
+
+func add_potion(potion: Node):
+	var obj :Node = potion.duplicate()
+	obj.name = "Object"
+	obj.transform = Transform2D.IDENTITY
+	obj.translate(Vector2(-4, -8))
+	obj.scale.x = 0.35
+	obj.scale.y = 0.35
+	_rem_obj()
+	$Player.add_child(obj)
 	object_held = OBJ_POTION
 	update_collection_info()
 	$PotionPickupSound.play()
 
-func add_long_range_gun():
+func add_long_range_gun(long_range_gun: Node):
+	var obj :Node2D = long_range_gun.duplicate()
+	obj.name = "Object"
+	obj.transform = Transform2D.IDENTITY
+	obj.translate(Vector2(-4, -8))
+	obj.scale.x = 0.35
+	obj.scale.y = 0.35
+	_rem_obj()
+	$Player.add_child(obj)
 	object_held = OBJ_RANGED_LONG
 	update_collection_info()
 	$PotionPickupSound.play()
 
-func add_short_range_gun():
+func add_short_range_gun(short_range_gun: Node):
+	var obj :Node = short_range_gun.duplicate()
+	obj.name = "Object"
+	obj.transform = Transform2D.IDENTITY
+	obj.translate(Vector2(-4, -8))
+	obj.scale.x = 0.35
+	obj.scale.y = 0.35
+	_rem_obj()
+	$Player.add_child(obj)
 	object_held = OBJ_RANGED_SHORT
 	update_collection_info()
 	$PotionPickupSound.play()
@@ -307,6 +343,7 @@ func use_object():
 			$HammerSound.play(1.3)
 			player.get_node("AnimationPlayer").play("shoot_short_gun")
 	object_held = null
+	_rem_obj()
 	update_collection_info()
 	update_steps_info()
 
@@ -318,7 +355,7 @@ func update_collection_info():
 		new_display_text += "Objeto: \n"
 	else:
 		new_display_text += "Objeto: " + str(object_held) + "\n"
-	new_display_text += "Tesoros: " + str(treasures_found) + "/5"
+	new_display_text += "Mascotas: " + str(treasures_found) + "/5"
 	$CanvasLayer/CollectionInfo.text = new_display_text
 
 func update_steps_info():
