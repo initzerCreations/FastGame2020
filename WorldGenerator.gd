@@ -52,33 +52,43 @@ var potion = preload("res://objects/Potion.tscn")
 var long_range_gun = preload("res://objects/LongRangeGun.tscn")
 var short_range_gun = preload("res://objects/ShortRangeGun.tscn")
 
-const START_ROOM_COUNT = 3 # not including starting room and exit room
-const ROOM_COUNT_INCREASE_PER_LEVEL = 2
-const EXIT_ROOM_TYPE_IND = 0
-const START_ROOM_TYPE_IND = 1
+var START_ROOM_COUNT = 3 # not including starting room and exit room
+var ROOM_COUNT_INCREASE_PER_LEVEL = 2
+var START_OBJECT_COUNT = 0
+var OBJECT_COUNT_INCREASE_PER_LEVEL = 1
+var START_ENEMY_COUNT = 2
+var ENEMY_COUNT_INCREASE_PER_LEVEL = 1
+var CHANCE_OF_TREASURE_SPAWNING = 2
 
-const CELL_SIZE = 16
-const ROOMS_SIZE = 8
-const ROOM_DATA_IMAGE_ROW_LEN = 4
-const NUM_OF_ROOM_TYPES = 11
 
-const NUM_OF_WALL_TYPES = 4
-const CHANCE_OF_NON_BLANK_WALL = 4
+var EXIT_ROOM_TYPE_IND = 0
+var START_ROOM_TYPE_IND = 1
 
-const KEY_COUNT = 3
-const DOOR_COUNT = 3
-const START_ENEMY_COUNT = 2
-const ENEMY_COUNT_INCREASE_PER_LEVEL = 1
-const START_OBJECT_COUNT = 0
-const OBJECT_COUNT_INCREASE_PER_LEVEL = 1
+var CELL_SIZE = 16
+var ROOMS_SIZE = 8
+var ROOM_DATA_IMAGE_ROW_LEN = 4
+var NUM_OF_ROOM_TYPES = 11
 
-const CHANCE_OF_TREASURE_SPAWNING = 2
+var NUM_OF_WALL_TYPES = 4
+var CHANCE_OF_NON_BLANK_WALL = 4
+
+var KEY_COUNT = 3
+var DOOR_COUNT = 3
 
 func init(scn_root, tilemap_ref, player_ref, exit_ref):
 	scene_root = scn_root 
 	player = player_ref 
 	exit = exit_ref 
 	tilemap = tilemap_ref
+	# Configurar en función de la dificultad seleccionada
+	var d = get_node('/root/Settings').SiguienteDificultad
+	START_ROOM_COUNT = 3 + d * 2
+	ROOM_COUNT_INCREASE_PER_LEVEL = 2 + d * 2
+	START_OBJECT_COUNT = max(0, 1 - d) # 1, 0, 0, 0
+	OBJECT_COUNT_INCREASE_PER_LEVEL = 2/(d * d + 1) # ~ 2, 1, 0.5, 0.25
+	START_ENEMY_COUNT = d + 1
+	ENEMY_COUNT_INCREASE_PER_LEVEL = d + 1
+	CHANCE_OF_TREASURE_SPAWNING = 2 + 2 * d
 
 func generate_world(level, trsure_ind):
 	cur_level = level
@@ -269,7 +279,7 @@ func generate_objects_in_world(spawn_locations: Dictionary) -> Dictionary:
 		treasure["message"] = treasures[treasure_ind].message
 		treasure["image"]  = treasures[treasure_ind].image
 	
-	var item_count = START_OBJECT_COUNT + cur_level * OBJECT_COUNT_INCREASE_PER_LEVEL
+	var item_count = int(START_OBJECT_COUNT + cur_level * OBJECT_COUNT_INCREASE_PER_LEVEL)
 	var split1 = int(rand_range(0, item_count))
 	var split2 = int(rand_range(split1, item_count))
 	var potion_count = split1

@@ -24,7 +24,7 @@ func _on_JugarImposible_pressed():
 	_on_Jugar_pressed(3)
 	
 func _on_Jugar_pressed(dificultad): # Rango [0, 3]
-	# TODO: Autoload + leer dificultad en WorldGenerator
+	get_node('/root/Settings').SiguienteDificultad = dificultad
 	get_tree().change_scene("res://World.tscn")
 
 

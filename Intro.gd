@@ -21,7 +21,7 @@ func _process(delta):
 		lastLetra = time
 		var nextCharIndex = startOffset + $RichTextLabel.text.length()
 		if nextCharIndex < 0:
-			get_tree().change_scene("res://MainMenu.tscn")
+			var _ign = get_tree().change_scene("res://MainMenu.tscn")
 		elif nextCharIndex == textToFill.length():
 			$AudioStreamPlayer.stop()
 			curTimeSkip = 1.0
@@ -37,4 +37,4 @@ func _process(delta):
 
 func _input(event):
 	if event.is_action("exit") or event.is_action("use_object"):
-		get_tree().change_scene("res://MainMenu.tscn")
+		var _ign = get_tree().change_scene("res://MainMenu.tscn")
